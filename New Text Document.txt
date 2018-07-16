@@ -1,0 +1,32 @@
+https://www.codewars.com/kata/esolang-minibitmove/train/python
+
+
+def interpreter(tape, array): 
+    list_array = list(array)
+    iter_tape = 0
+    iter_array = 0
+    s = ''
+    while iter_array < len(array):
+        if tape[iter_tape] == '0':
+            s += list_array[iter_array]
+            iter_tape = (iter_tape+1)%len(tape)
+            iter_array += 1
+        else:
+            list_array[iter_array] = {'0':'1','1':'0'}[list_array[iter_array]]
+            iter_tape = (iter_tape+1)%len(tape)      
+    return s
+                
+
+https://www.codewars.com/kata/esolang-tick/train/python
+
+def interpreter(tape):
+    d = {0:0}
+    iterator = 0
+    s = ''
+    for com in tape:
+        if com == '>': iterator += 1
+        elif com == '<': iterator -= 1
+        elif com == '*': s += chr(d[iterator])
+        elif com == '+' : d[iterator] = (d[iterator]+1)%256
+        if d.get(iterator) == None : d[iterator] = 0     
+    return s
